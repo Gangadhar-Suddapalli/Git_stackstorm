@@ -1,0 +1,9 @@
+pack: packs
+enabled: true
+runner_type: orquesta
+parameters:
+  pack_name:
+    type: string
+name: create_agent_pack
+entry_point: workflows/create_agent_pack.yaml
+description: create_agent_pack

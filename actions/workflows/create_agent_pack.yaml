@@ -1,0 +1,31 @@
+version: 1.0
+tasks:
+  # [567, 66]
+  start:
+    action: core.noop
+    next:
+      - do:
+          - create_pack_folder
+  # [568, 184]
+  create_pack_folder:
+    action: core.local
+    input:
+      cmd: "sudo su\ncd /home/ubuntu/\nsudo cp -rf axl_ai/  <%ctx().pack_name%>\n"
+    next:
+      - do:
+          - update_pack
+  # [569, 319]
+  update_pack:
+    action: core.local
+    input:
+      cmd: sudo sed -i 's/axl_ai/<%ctx().pack_name%>/g' /home/ubuntu/<%ctx().pack_name%>/pack.yaml
+    next:
+      - do:
+          - task1
+  # [572, 451]
+  task1:
+    action: core.local
+    input:
+      cmd: "st2 login st2admin -p 'Ch@ngeMe'\nst2 pack install file:///home/ubuntu/<%ctx().pack_name%>/"
+input:
+  - pack_name
