@@ -1,0 +1,6 @@
+pack: clarke_l1_euc_engineer_axl
+enabled: true
+runner_type: orquesta
+name: EUC_Get_Device_CPU_Test
+entry_point: workflows/EUC_Get_Device_CPU_Test.yaml
+description: EUC_Get_Device_CPU_Test

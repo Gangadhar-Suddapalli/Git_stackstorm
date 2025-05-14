@@ -1,0 +1,40 @@
+version: 1.0
+tasks:
+  # [344, 34]
+  START:
+    action: core.noop
+    next:
+      # #629e47
+      - do:
+          - GET_CPU
+        when: <%succeeded()%>
+  # [347, 138]
+  GET_CPU:
+    action: core.local_sudo
+    input:
+      sudo_password: Ch@ngeMe
+      cmd: "curl \"https://api.mathjs.org/v4/?expr=round(random()*49)+1\""
+    next:
+      # #629e47
+      - do:
+          - DISPLAY_CPU
+        when: <%succeeded()%>
+        publish:
+          - cpu: <% result().stdout %>
+  # [348, 242]
+  DISPLAY_CPU:
+    action: core.echo
+    input:
+      message: "\"CPU usage is currently at <% ctx().cpu %>%. Please verify if this is within acceptable limits.\""
+    next:
+      # #629e47
+      - do:
+          - END
+        when: <%succeeded()%>
+        publish:
+          - info: CPU usage is currently at <% ctx().cpu %>%. Please verify if this is within acceptable limits.
+  # [351, 351]
+  END:
+    action: core.noop
+output:
+  - result: <%ctx().info%>

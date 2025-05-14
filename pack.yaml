@@ -1,9 +1,19 @@
 ---
+<<<<<<< HEAD
 name : packs
 description : Pack management functionality.
+=======
+name : clarke_l1_euc_engineer_axl
+description : Basic clarke_l1_euc_engineer_axl actions.
+>>>>>>> Initial commit for clarke_l1_euc_engineer_axl
 version: 3.8.1
 python_versions:
   - "2"
   - "3"
+<<<<<<< HEAD
 author : StackStorm, Inc.
 email : info@stackstorm.com
+=======
+author : AXL_AI
+email : axlai@accelnomics.com
+>>>>>>> Initial commit for clarke_l1_euc_engineer_axl
